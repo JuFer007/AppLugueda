@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:style="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lugueda App</title>
+  <!-- Link de fontawesome -->  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Leaflet CSS (para el mapa) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Estilos aparte -->
+  <link rel="stylesheet" href="css/styleIndex.css">
+  <link rel="stylesheet" href="css/stylePerfil.css">
+  <link rel="stylesheet" href="css/styleRuta.css">
+  <link rel="stylesheet" href="css/styleRecarga.css">
+  <link rel="stylesheet" href="css/stylePagos.css">
+  <link rel="stylesheet" href="css/styleBuses.css">
+</head>
+<body class="bg-body-tertiary">
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #00733c !important;">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a class="navbar-brand" href="#">
+                    <img src="recursos/logo.png" style="width: 50px; margin-top: 25px;">
+                </a>
+
+                <!-- Botón que abre el offcanvas -->
+                <button class="navbar-toggler" style="margin-top: 25px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Offcanvas -->
+                <div class="offcanvas offcanvas-end text-white" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #00733c; color: black;">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <!-- Enlaces -->
+                        <ul class="navbar-nav offcanvas-nav justify-content-end flex-grow-1 pe-3">
+                            <!-- Perfil de usuario -->
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="#" data-target="#perfil"><i class="fa-solid fa-user"></i> Perfil</a>
+                            </li>
+                            <!-- Rutas -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-target="#Ruta"><i class="fa-solid fa-location-dot"></i> Ruta</a>
+                            </li>
+                            <!-- Pagos -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-target="#pagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+                            </li>
+                            <!-- Recargar -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-target="#recarga"><i class="fa-solid fa-money-check-dollar"></i> Recarga</a>
+                            </li>
+                            <!-- Buses -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-target="#buses"><i class="fa-solid fa-bus"></i> Buses</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Perfil -->
+        <section id="perfil" style="display: none;">
+
+            <!-- Portada y foto de perfil -->
+            <div class="cover-container position-relative mt-0">
+                <img id="coverImg" src="https://media.istockphoto.com/id/1392421738/es/foto/chiclayo-per%C3%BA.jpg?s=612x612&w=0&k=20&c=YK2kPz5yAqYawyA2ZEIN-9tJkMcGxn96a-FhdUS4Sf0=" alt="Portada" class="cover-img">
+                <img id="profilePic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Foto de perfil" class="profile-img">
+            </div>
+
+            <!-- Contenido del perfil: Info y Tabs -->
+            <div class="container profile-content">
+                <div class="row">
+                    <!-- Columna Izquierda: Información del Usuario -->
+                    <div class="col-lg-4">
+                        <div class="profile-info text-center text-lg-start">
+                            <h3 id="username" class="fw-bold">User</h3>
+                            <p id="userBio" class="text-dark">Usuario frecuente de Lugueda App. Viajando de forma inteligente y segura por la ciudad. ¡Siempre a tiempo a mi destino!</p>
+                            <div class="profile-socials justify-content-center justify-content-lg-start">
+                                <button><i class="fa-brands fa-instagram"></i></button>
+                                <button><i class="fa-brands fa-twitter"></i></button>
+                                <button><i class="fa-brands fa-facebook"></i></button>
+                                <button><i class="fa-brands fa-github"></i></button>
+                            </div>
+                            <div class="profile-actions d-flex justify-content-center justify-content-lg-start gap-2 mt-3">
+                                <button class="btn btn-success profile-btn">
+                                    <i class="bi bi-pencil"></i> Editar Perfil
+                                </button>
+                                <button class="btn btn-success profile-btn" id="btn-CerrarSesion">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Pestañas de Contenido -->
+                    <div class="col-lg-8">
+                        <div class="profile-tabs">
+                            <div class="profile-tabs__header">
+                                <button class="profile-tabs__button --active" data-tab="tab1"><i class="fa-solid fa-circle-info"></i> Información Personal</button>
+                            </div>
+
+                            <div class="profile-tabs__content">
+                                <div id="tab1" class="profile-tabs__panel --active">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex flex-column flex-sm-row justify-content-sm-between align-items-start">
+                                            <strong class="me-2">Nombres Completos:</strong>
+                                            <span class="text-muted">Marcelo Huaman</span>
+                                        </li>
+                                        <li class="list-group-item d-flex flex-column flex-sm-row justify-content-sm-between align-items-start">
+                                            <strong class="me-2">Correo Electrónico:</strong>
+                                            <span class="text-muted">marcH@hotmail.com</span>
+                                        </li>
+                                        <li class="list-group-item d-flex flex-column flex-sm-row justify-content-sm-between align-items-start">
+                                            <strong class="me-2">DNI:</strong>
+                                            <span class="text-muted">12345678</span>
+                                        </li>
+                                        <li class="list-group-item d-flex flex-column flex-sm-row justify-content-sm-between align-items-start">
+                                            <strong class="me-2">Teléfono:</strong>
+                                            <span class="text-muted">+51 987 654 321</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ruta -->
+        <section id="Ruta" style="display: none;">
+            <div class="container my-4">
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered table-sm caption-top bg-white shadow-sm">
+                        <caption>Paraderos Principales</caption>
+                        <tbody>
+                            <tr>
+                                <td><i class="fa-solid fa-school-flag"></i> USAT / UTP</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-hospital"></i> Hospital Regional</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-store"></i> Mall Aventura / Real Plaza</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-shop"></i> Mercado Modelo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-normal"><i class="fa-solid fa-map-location-dot me-2"></i>Visualizador de Rutas</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pagos -->
+        <section id="pagos" style="display: none;">
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <!-- Opción de Pago QR -->
+                        <div class="card text-center mb-4 shadow-sm">
+                            <div class="card-body p-4">
+                                <h5 class="card-title">Pago Rápido con QR</h5>
+                                <p class="card-text text-muted small">Escanea el código QR dentro del bus para pagar tu pasaje al instante.</p>
+                                <button class="btn btn-success">
+                                    <i class="fa-solid fa-qrcode me-2"></i> Escanear QR
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Opción de Pago Manual -->
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0 fw-normal">O Pagar Manualmente</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="busNumber" class="form-label">Número de Bus</label>
+                                        <input type="text" class="form-control" id="busNumber" placeholder="Ej: 001">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fareAmount" class="form-label">Monto del Pasaje</label>
+                                        <input type="text" class="form-control" id="fareAmount" placeholder="Ej: S/ 2.00">
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-success">Pagar Pasaje</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Último Ticket Generado -->
+                        <div class="digital-ticket">
+                            <div class="ticket-header">Último Ticket Generado</div>
+                            <div class="ticket-body">
+                                <div class="ticket-item"><span>Bus:</span><strong>001</strong></div>
+                                <div class="ticket-item"><span>Fecha:</span><strong>21/05/2024</strong></div>
+                                <div class="ticket-item"><span>Monto:</span><strong>S/ 2.00</strong></div>
+                                <div class="ticket-item"><span>Estado:</span><strong class="text-success">PAGADO</strong></div>
+                            </div>
+                            <div class="ticket-footer">¡Buen Viaje!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recarga -->
+        <section id="recarga" style="display: none;">
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <!-- Tarjeta de Transporte -->
+                        <div class="transport-card shadow-lg mb-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <span class="card-brand">Lugueda Card</span>
+                                <img src="recursos/logo.png" class="card-logo" alt="Logo">
+                            </div>
+                            <div class="card-chip"></div>
+                            <div class="card-number">
+                                <span>****</span>
+                                <span>****</span>
+                                <span>****</span>
+                                <span>1234</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <div class="card-holder">
+                                    <small>Titular</small>
+                                    <div>MARCELO HUAMAN</div>
+                                </div>
+                                <div class="card-expiry text-end">
+                                    <small>Expira</small>
+                                    <div>12/28</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Saldo y Acciones -->
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <p class="text-muted mb-2">Tu Saldo Actual</p>
+                                <h2 class="h1 fw-bold mb-4">S/ 25.50</h2>
+                                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                                    <button type="button" class="btn btn-success px-4 gap-3" style="font-size: 13px;"><i class="fa-solid fa-plus-circle"></i> Recargar Saldo</button>
+                                    <button type="button" class="btn btn-outline-secondary px-4" style="font-size: 13px;"><i class="fa-solid fa-list"></i> Ver Movimientos</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Movimientos Simulados -->
+                        <div class="mt-4">
+                            <h5 class="mb-3">Últimos Movimientos</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="fw-bold">Recarga online</div>
+                                        <small class="text-muted">20 de Mayo, 2024</small>
+                                    </div>
+                                    <span class="badge bg-success rounded-pill">+ S/ 20.00</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="fw-bold">Pasaje Bus 001</div>
+                                        <small class="text-muted">19 de Mayo, 2024</small>
+                                    </div>
+                                    <span class="badge bg-danger rounded-pill">- S/ 2.00</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="fw-bold">Pasaje Bus 002</div>
+                                        <small class="text-muted">18 de Mayo, 2024</small>
+                                    </div>
+                                    <span class="badge bg-danger rounded-pill">- S/ 2.00</span>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buses -->
+        <section id="buses" style="display: block;">
+            <div class="container my-4">
+                <h2 class="text-center mb-4">Buses en Operación</h2>
+                <div class="row g-4">
+                    <!-- Bus Card 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card bus-card h-100">
+                            <img src="recursos/bus.jpg" class="card-img-top" alt="Foto del bus">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bus 001</h5>
+                                <p class="card-text text-muted small mb-3">Conductor: Juan Pérez</p>
+                                <p class="bus-next-stop"><i class="fa-solid fa-location-arrow"></i> Próxima Parada: <strong>Mall Aventura</strong></p>
+                                <div class="mt-auto">
+                                    <p class="card-text small mb-2"><strong>Placa:</strong> ABC-123</p>
+                                    <a href="#" class="btn btn-success btn-sm">Ver en Mapa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bus Card 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card bus-card h-100">
+                            <img src="recursos/bus.jpg" class="card-img-top" alt="Foto del bus">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bus 002</h5>
+                                <p class="card-text text-muted small mb-3">Conductora: María López</p>
+                                <p class="bus-next-stop"><i class="fa-solid fa-location-arrow"></i> Próxima Parada: <strong>USAT</strong></p>
+                                <div class="mt-auto">
+                                    <p class="card-text small mb-2"><strong>Placa:</strong> XYZ-789</p>
+                                    <a href="#" class="btn btn-success btn-sm">Ver en Mapa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bus Card 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card bus-card h-100">
+                            <img src="recursos/bus.jpg" class="card-img-top" alt="Foto del bus">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bus 003</h5>
+                                <p class="card-text text-muted small mb-3">Conductor: Carlos Ruiz</p>
+                                <p class="bus-next-stop"><i class="fa-solid fa-location-arrow"></i> Próxima Parada: <strong>Mercado Modelo</strong></p>
+                                <div class="mt-auto">
+                                    <p class="card-text small mb-2"><strong>Placa:</strong> GHI-456</p>
+                                    <a href="#" class="btn btn-success btn-sm">Ver en Mapa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bus Card 4 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card bus-card h-100">
+                            <img src="recursos/bus.jpg" class="card-img-top" alt="Foto del bus">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bus 004</h5>
+                                <p class="card-text text-muted small mb-3">Conductora: Ana Torres</p>
+                                <p class="bus-next-stop"><i class="fa-solid fa-location-arrow"></i> Próxima Parada: <strong>Hospital Regional</strong></p>
+                                <div class="mt-auto">
+                                    <p class="card-text small mb-2"><strong>Placa:</strong> JKL-101</p>
+                                    <a href="#" class="btn btn-success btn-sm">Ver en Mapa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Leaflet JS (para el mapa) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Script personalizado para el mapa -->
+  <script src="js/map.js"></script>
+  <!-- Script para la autenticación -->
+  <script src="js/auth.js"></script>
+  <!-- Script para la navegación -->
+  <script src="js/navigation.js"></script>
+</body>
+</html>

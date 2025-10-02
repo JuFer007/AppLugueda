@@ -1,0 +1,306 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: #1d1c1c;
+    color: #000;
+}
+
+/* ------------------ PORTADA ------------------ */
+.cover-container {
+    position: relative;
+    width: 100%;
+}
+
+.cover-container .cover-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(100%);
+    transition: filter 0.5s ease-in-out;
+}
+
+/* ------------------ FOTO DE PERFIL ------------------ */
+.profile-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5; /* Asegura que esté por encima de la portada */
+    width: 160px !important;
+    height: 160px !important;
+    object-fit: cover;
+    border: 2.5px solid #1d1c1c;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 100px !important;
+    width: 100px !important;
+    transition: all 0.3s;
+}
+
+/* Contenedor principal debajo de la portada */
+.profile-content {
+    padding-top: 100px;
+    margin-top: -70px; /* Espacio para que el contenido no se solape con la foto */
+}
+
+/* ------------------ INFO DEL USUARIO ------------------ */
+.profile-info {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px #0008;
+    text-align: justify;    
+    position: relative;
+}
+
+.profile-info h3 {
+    color: #000000;
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+.profile-info p {
+    color: #000000;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+/* ------------------ TABS ------------------ */
+.profile-tabs {
+    width: 100%;
+    max-width: 1000px;
+    background: #00733c;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.profile-tabs__header {
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+}
+
+.profile-tabs__button {
+    flex: 1;
+    padding: 1rem 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+}
+
+.profile-tabs__button.--active {
+    color: #ffffff;
+}
+
+.profile-tabs__content {
+    padding: 1.4rem;
+    background-color: #fff;
+    color: #000;
+    height: 100%;
+}
+
+.profile-tabs__panel {
+    display: none;
+}
+
+.profile-tabs__panel.--active {
+    display: block;
+}
+
+.profile-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-socials button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+    transition: transform 0.2s, color 0.2s;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.profile-socials button:hover {
+    transform: scale(1.2);
+    color: #00733c;
+}
+
+/* ------------------ MODAL EDITAR PERFIL ------------------ */
+#editProfileModal .modal-dialog {
+    max-width: 500px; /* Tamaño del modal */
+}
+
+#editProfileModal .modal-content {
+    background-color: #1d1c1c;
+    color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+#editProfileModal .modal-header {
+    border-bottom: 2px solid #00733c;
+}
+
+#editProfileModal .modal-title {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #00733c;
+}
+
+#editProfileModal .modal-body {
+    padding: 2rem;
+}
+
+#editProfileModal .form-label {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+#editProfileModal .form-control {
+    background-color: #ffffff;
+    border: 1px solid #00733c;
+    color: #000000;
+}
+
+#editProfileModal .form-control:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(0, 115, 60, 0.3);
+    background-color: #ffffff;
+    color: #050000;
+}
+
+/* Botones */
+#editProfileModal .btn,
+#editProfileModal .btn-outline-light,
+#editProfileModal .btn-success,
+#editProfileModal .btn-secondary {
+    background-color: #00733c;
+    border: 2px solid #00733c;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#editProfileModal .btn:hover,
+#editProfileModal .btn-outline-light:hover,
+#editProfileModal .btn-success:hover,
+#editProfileModal .btn-secondary:hover {
+    background-color: #005a2f;
+    border-color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 115, 60, 0.5);
+}
+
+#editProfileModal .btn:focus,
+#editProfileModal .btn-outline-light:focus,
+#editProfileModal .btn-success:focus,
+#editProfileModal .btn-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(0, 115, 60, 0.7);
+}
+
+.btn-avatar {
+    background-color: #00733c;
+    color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ------------------ COMBOBOX DE PORTADA ------------------ */
+#coverSelect {
+    background-color: #ffffff;
+    color: #050000;
+    border: 2px solid #00733c;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    appearance: none;
+}
+
+#coverSelect:hover {
+    border-color: #ffffff;
+}
+
+#coverSelect:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 6px rgba(0, 115, 60, 0.7);
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Grid de avatares con nombre */
+.avatar-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.avatar-item {
+    text-align: center;
+    cursor: pointer;
+}
+
+.avatar-item .avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;    border: 2px solid #00733c;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.avatar-item .avatar:hover {
+    transform: scale(1.1);
+    border-color: #050000;
+}
+
+.avatar-item .avatar-name {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* ------------------ RESPONSIVE ------------------ */
+@media (max-width: 991.98px) { /* Breakpoint de Bootstrap para 'lg' */
+    .profile-img {
+        /* Centra la imagen de perfil en pantallas pequeñas */
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-content {
+        padding-top: 90px;
+    }
+
+    .profile-info {
+        margin-top: 0;
+    }
+    .profile-tabs {
+        margin-top: 2rem;
+    }
+}

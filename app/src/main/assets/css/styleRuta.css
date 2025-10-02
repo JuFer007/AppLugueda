@@ -1,0 +1,52 @@
+/* Estilos para la sección de Ruta */
+#map {
+    height: 500px; /* Altura fija para el contenedor del mapa */
+    border-radius: 0.5rem;
+}
+
+/* Estilos para el ícono de bus personalizado (divIcon) */
+.bus-marker-icon {
+    background-color: #fff;
+    border: 2px solid #00733c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.bus-marker-icon i {
+    font-size: 18px; /* Ligeramente más grande para mejor visibilidad */
+    color: #000000; /* Color negro */
+}
+
+/* Estilos para la tabla de paraderos */
+.table-responsive caption {
+    padding-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.table {
+    border: 1px solid #dee2e6;
+}
+
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    text-align: left;
+    border-top: 1px solid #f1f1f1;
+    font-weight: 500;
+}
+
+.table tr:first-child td {
+    border-top: none;
+}
+
+.table td i {
+    margin-right: 10px;
+    color: #00733c;
+    width: 20px; /* Alinea los íconos */
+    text-align: center;
+}

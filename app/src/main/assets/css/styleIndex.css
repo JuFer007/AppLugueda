@@ -1,0 +1,9 @@
+/* Estilos para los enlaces del menú en el offcanvas */
+.offcanvas-nav .nav-link {
+    color: #ffffff !important; /* Color blanco para enlaces */
+}
+
+.offcanvas-nav .nav-link:hover,
+.offcanvas-nav .nav-link.active {
+    color: #ffffff !important; /* Color blanco sólido para enlace activo o al pasar el mouse */
+}

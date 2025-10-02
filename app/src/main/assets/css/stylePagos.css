@@ -1,0 +1,67 @@
+/* Estilos para el Ticket Digital */
+.digital-ticket {
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.digital-ticket .ticket-header {
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px dashed #ccc;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.digital-ticket .ticket-body {
+    padding: 1.5rem;
+}
+
+.digital-ticket .ticket-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.digital-ticket .ticket-item span {
+    color: #6c757d;
+}
+
+.digital-ticket .ticket-item:last-child {
+    margin-bottom: 0;
+}
+
+.digital-ticket .ticket-footer {
+    padding: 0.75rem;
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+    border-top: 1px dashed #ccc;
+}
+
+/* Estilos para la tarjeta de Pago Manual */
+#pagos .card-header {
+    background-color: #00733c;
+    color: white;
+}
+
+#pagos .form-control:focus {
+    border-color: #00733c;
+    box-shadow: 0 0 0 0.25rem rgba(0, 115, 60, 0.25);
+}
+
+#pagos .btn-success {
+    background-color: #00733c;
+    border-color: #00733c;
+}
+
+#pagos .btn-success:hover {
+    background-color: #005a2f;
+    border-color: #005a2f;
+}

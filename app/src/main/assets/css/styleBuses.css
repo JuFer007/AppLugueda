@@ -1,0 +1,30 @@
+/* Estilos para la sección de Buses */
+.bus-card {
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bus-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.bus-card .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+.bus-card .card-title {
+    font-weight: 600;
+}
+
+.bus-card .bus-next-stop {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.bus-card .bus-next-stop i {
+    color: #00733c;
+    margin-right: 5px;
+}
