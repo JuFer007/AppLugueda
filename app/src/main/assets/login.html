@@ -65,7 +65,7 @@
         </form>
 
         <!-- Formulario de Registro -->
-        <form id="register-form" class="auth-form">
+        <form id="register-form" class="auth-form" onsubmit="doRegister(event)">
             <div class="mb-3">
                 <label for="registerName" class="form-label">Nombre Completo</label>
                 <div class="input-group">
@@ -103,36 +103,8 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Script para login -->
-<script>
-    function doLogin(event) {
-        event.preventDefault();
-        var email = document.getElementById("loginEmail").value;
-        var pass = document.getElementById("loginPassword").value;
-
-        // Llamada al método Java en MainActivity
-        Android.login(email, pass);
-    }
-</script>
-<script>
-    // Botones de alternancia
-    const toggleButtons = document.querySelectorAll(".toggle-btn");
-    const forms = document.querySelectorAll(".auth-form");
-
-    toggleButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            // Quitar 'active' a todos los botones
-            toggleButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            // Mostrar el formulario correcto
-            forms.forEach(form => form.classList.remove("active"));
-            const targetForm = document.getElementById(btn.dataset.form);
-            targetForm.classList.add("active");
-        });
-    });
-</script>
-
+<script src="js/alternarLogin.js"></script>
+<script src="js/iniciarSesion.js"></script>
+<script src="js/registroUsuario.js"></script>
 </body>
 </html>
