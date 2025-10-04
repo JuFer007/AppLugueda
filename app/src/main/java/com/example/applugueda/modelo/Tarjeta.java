@@ -1,5 +1,6 @@
 package com.example.applugueda.modelo;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Tarjeta {
@@ -47,18 +48,10 @@ public class Tarjeta {
         this.movimientos = movimientos;
     }
 
-    public String movimientosJson() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        for (int i = 0; i < movimientos.size(); i++) {
-            Movimiento m = movimientos.get(i);
-            sb.append("{")
-                    .append("\"tipo\":\"").append(m.getTipo()).append("\",")
-                    .append("\"monto\":").append(m.getMonto())
-                    .append("}");
-            if (i < movimientos.size() - 1) sb.append(",");
+    public void agregarMovimiento(String tipo, double monto, Date fecha) {
+        if (movimientos == null) {
+            movimientos = new ArrayList<>();
         }
-        sb.append("]");
-        return sb.toString();
+        movimientos.add(new Movimiento(tipo, monto, fecha));
     }
 }

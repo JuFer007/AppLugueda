@@ -9,8 +9,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class UsuarioManager {
     private Context context;
@@ -115,6 +117,29 @@ public class UsuarioManager {
                             tarjetaObj.getString("fechaVencimiento"),
                             tarjetaObj.getDouble("saldoActual")
                     );
+
+                    if (tarjetaObj.has("movimientos")) {
+                        JSONArray movs = tarjetaObj.getJSONArray("movimientos");
+                        for (int j = 0; j < movs.length(); j++) {
+                            JSONObject movObj = movs.getJSONObject(j);
+
+                            String fechaStr = movObj.getString("fecha");
+                            Date fecha = null;
+                            try {
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                                fecha = sdf.parse(fechaStr);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            tarjeta.agregarMovimiento(
+                                    movObj.getString("tipo"),
+                                    movObj.getDouble("monto"),
+                                    fecha
+                            );
+                        }
+                    }
+
                     return new Usuario(
                             obj.getString("nombreCompleto"),
                             obj.getString("dni"),
@@ -147,8 +172,9 @@ public class UsuarioManager {
                     double saldoActual = tarjetaObj.optDouble("saldoActual", 0.0);
                     if (tipo.equalsIgnoreCase("Recarga")) {
                         saldoActual += monto;
-                    } else if (tipo.equalsIgnoreCase("Pasaje")) {
+                    } else {
                         saldoActual -= monto;
+                        if (saldoActual < 0) saldoActual = 0;
                     }
                     tarjetaObj.put("saldoActual", saldoActual);
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scann - Lugueda App</title>
+    <link rel="stylesheet" href="css/styleQR.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <a class="navbar-brand" href="#">
+                <img src="recursos/logo.png" style="width: 50px; margin-top: 15px;">
+            </a>
+        </div>
+    </div>
+
+    <div class="payment-info">
+        <div class="label">Pago con QR</div>
+        <div class="recipient-name">
+            <p>Pago a Bus Número: </p>
+            <p id=numeroBus></p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="amount-container">
+            <div class="currency">S/</div>
+            <div class="amount">2.00</div>
+        </div>
+    </div>
+
+    <button class="payment-button" onclick="processPayment()">Pagar</button>
+    <button class="cancel-button" onclick="cancelPayment()">Cancelar</button>
+</div>
+
+<div class="success-modal" id="successModal">
+    <div class="success-content">
+        <div class="success-icon">✓</div>
+        <div class="success-text">¡Pago exitoso!</div>
+        <div class="success-subtext">Tu pago se realizó correctamente</div>
+    </div>
+</div>
+
+<script src="js/logicaQR.js"></script>
+</body>
+</html>
