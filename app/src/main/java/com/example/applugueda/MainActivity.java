@@ -134,7 +134,11 @@ public class MainActivity extends AppCompatActivity {
                 if (usuarioManager.validarLogin(email, pass)) {
                     correoLogueado = email;
                     Toast.makeText(MainActivity.this, "Acceso Correcto", Toast.LENGTH_SHORT).show();
-                    webView.loadUrl("file:///android_asset/index.html");
+                    webView.loadUrl("file:///android_asset/splash.html");
+
+                    new android.os.Handler().postDelayed(() -> {
+                        webView.loadUrl("file:///android_asset/index.html");
+                    }, 4000);
                 } else {
                     Toast.makeText(MainActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
                 }
